@@ -1,5 +1,5 @@
 "use client";
-import { Flex, Button, Text, Heading } from "@chakra-ui/react";
+import { Flex, Button, Text, Heading, useBreakpointValue } from "@chakra-ui/react";
 import { useColorModeValue } from "./ui/color-mode";
 import MenuDrawer from "./MenuDrawer";
 import Link from "next/link";
@@ -12,6 +12,7 @@ interface NavigationBarProps {
 
 export default function NavigationBar({ username }: NavigationBarProps) {
   const bgColor = useColorModeValue("gray.100", "gray.800");
+  const isMobile = useBreakpointValue({ base: true, md: true, lg: false });
   const router = useRouter();
 
   const logout = () => {
@@ -25,18 +26,19 @@ export default function NavigationBar({ username }: NavigationBarProps) {
         <Link href="/">
           <Heading fontWeight={"semibold"}>a Board</Heading>
         </Link>
-        {username ? (
-          <div className="space-x-6 flex items-center">
-            <Avatar variant={"solid"} name={username} />
+        {isMobile ? (
+          <MenuDrawer />
+        ) : username ? (
+          <div className="flex items-center space-x-6">
+            <Avatar variant="solid" name={username} />
             <Text>{username}</Text>
-            <Button size={"md"} px={4} onClick={logout}>
+            <Button size="md" px={4} onClick={logout}>
               Logout
             </Button>
           </div>
         ) : (
-          // <MenuDrawer />
           <Link href="/signin">
-            <Button size={"md"} px={6} bg="#49A569">
+            <Button size="md" px={6} bg="#49A569">
               Sign In
             </Button>
           </Link>

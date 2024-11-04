@@ -9,8 +9,11 @@ import {
   DrawerRoot,
   DrawerTitle,
 } from "@/components/ui/drawer";
-import { IconButton } from "@chakra-ui/react";
+import { Button, IconButton, Stack, Text } from "@chakra-ui/react";
 import { RxHamburgerMenu } from "react-icons/rx";
+import Link from "next/link";
+import { FaHouseChimney } from "react-icons/fa6";
+import { FiEdit } from "react-icons/fi";
 export default function MenuDrawer() {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -29,15 +32,25 @@ export default function MenuDrawer() {
       </IconButton>
       <DrawerRoot open={isOpen} onOpenChange={onClose}>
         <DrawerBackdrop />
-        <DrawerContent>
+        <DrawerContent bg={"#243831"}>
           <DrawerHeader>
             <DrawerTitle>Drawer Title</DrawerTitle>
           </DrawerHeader>
           <DrawerBody>
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+            <Stack>
+              <Link href="/">
+                <Button spaceX={4}>
+                  <FaHouseChimney />
+                  <Text>Home</Text>
+                </Button>
+              </Link>
+              <Link href="/myblog">
+                <Button spaceX={4}>
+                  <FiEdit />
+                  <Text>Our Blog</Text>
+                </Button>
+              </Link>
+            </Stack>
           </DrawerBody>
           <DrawerCloseTrigger />
         </DrawerContent>

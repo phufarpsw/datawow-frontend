@@ -36,7 +36,9 @@ export default function PostCard({ isFirst, post, onDelete }: IPostCardProps) {
                 <Badge>{post.community}</Badge>
               </HStack>
               <Card.Title>{post.title}</Card.Title>
-              <Card.Description>{post.description}</Card.Description>
+              <Card.Description truncate lineClamp={2}>
+                {post.description}
+              </Card.Description>
             </Card.Body>
             <Card.Footer>
               <IoChatbubbleOutline />

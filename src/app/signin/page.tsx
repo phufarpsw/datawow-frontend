@@ -73,7 +73,6 @@ export default function LoginPage() {
             Sign in
           </Text>
           <Field
-            label="First name"
             invalid={!!errors.username}
             errorText={errors.username?.message}
           >

@@ -46,8 +46,8 @@ export const CreatePostDialog = ({ onCreate }: CreatePostDialogProps) => {
   const onOpenCreate = () => {
     if (userId) {
       setIsOpen(true);
-    }else {
-      alert('Please Login first')
+    } else {
+      alert("Please Login first");
     }
   };
 
@@ -91,9 +91,8 @@ export const CreatePostDialog = ({ onCreate }: CreatePostDialogProps) => {
               mb={3}
               bg={"white"}
               color={"black"}
+              border="1px solid #ccc"
               placeholder="Title"
-              borderColor={"green.500"}
-              _focus={{ borderColor: "green.500" }}
             />
           </Field>
           <Field
@@ -102,13 +101,14 @@ export const CreatePostDialog = ({ onCreate }: CreatePostDialogProps) => {
           >
             <Textarea
               p={4}
+              h={"3xs"}
               {...register("description", {
                 required: "Description is required",
               })}
               bg={"white"}
               color={"black"}
+              border="1px solid #ccc"
               placeholder="What's on your mind..."
-              _focus={{ borderColor: "green.500" }}
             />
           </Field>
         </DialogBody>
