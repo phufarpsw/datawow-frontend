@@ -10,22 +10,24 @@ interface LayoutProps {
 }
 
 export default function Layout({ children }: LayoutProps) {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState({
+    id: "",
+    username: "",
+  });
   const isMobile = useBreakpointValue({ base: true, md: true, lg: false });
-  const username = localStorage.getItem("username") ?? "";
 
   useEffect(() => {
     const userId = localStorage.getItem("userId");
     if (userId) {
-       setIsAuthenticated(true);
+      const username = localStorage.getItem("username") ?? "";
+      setUser({ id: userId, username });
     } else {
-      setIsAuthenticated(false);
     }
   }, []);
 
   return (
     <Box minH="100vh" display="flex" flexDirection="column" bg="#BBC2C0">
-      <NavigationBar username={username} />
+      <NavigationBar username={user.username} />
       <Flex flex={1} gap={4} p={4}>
         {/* Sidebar Section */}
         {!isMobile && (
