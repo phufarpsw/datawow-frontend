@@ -2,8 +2,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { Box, Flex, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Text, Flex, useBreakpointValue } from "@chakra-ui/react";
 import NavigationBar from "@/components/NavigationBar";
+import { FaHouseChimney } from "react-icons/fa6";
+import { Button } from "@/components/ui/button";
+import { FiEdit } from "react-icons/fi";
+import Link from "next/link";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -31,10 +35,20 @@ export default function Layout({ children }: LayoutProps) {
       <Flex flex={1}>
         {/* Sidebar Section */}
         {!isMobile && (
-          <Box w="sm" h="full" p={4}>
-            <p>Home</p>
-            <p>Our Blog</p>
-          </Box>
+          <Flex p={6} w="sm" h="full" alignItems={"start"} direction={"column"}>
+            <Link href="/">
+              <Button spaceX={4}>
+                <FaHouseChimney />
+                <Text>Home</Text>
+              </Button>
+            </Link>
+            <Link href="/myblog">
+              <Button spaceX={4}>
+                <FiEdit />
+                <Text>Our Blog</Text>
+              </Button>
+            </Link>
+          </Flex>
         )}
 
         {/* Main Content Section */}
