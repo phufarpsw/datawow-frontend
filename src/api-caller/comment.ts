@@ -13,6 +13,24 @@ export interface IComment {
   };
 }
 
+export interface ICreateComment {
+  content: string;
+  postId: string;
+  authorId: string;
+}
+
+export async function createComment(body: ICreateComment) {
+  try {
+    const { data } = await getInstance().post(
+      `/post/${body.postId}/comment`,
+      body
+    );
+    return data;
+  } catch (error) {
+    return formattedError(error);
+  }
+}
+
 export async function getCommentByPostId(postId: string) {
   try {
     const { data } = await getInstance().get(`/post/${postId}/comment`);
