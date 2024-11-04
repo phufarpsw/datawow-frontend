@@ -7,7 +7,6 @@ import {
   DrawerContent,
   DrawerHeader,
   DrawerRoot,
-  DrawerTitle,
 } from "@/components/ui/drawer";
 import { Button, IconButton, Stack, Text } from "@chakra-ui/react";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -33,9 +32,7 @@ export default function MenuDrawer() {
       <DrawerRoot open={isOpen} onOpenChange={onClose}>
         <DrawerBackdrop />
         <DrawerContent bg={"#243831"}>
-          <DrawerHeader>
-            <DrawerTitle>Drawer Title</DrawerTitle>
-          </DrawerHeader>
+          <DrawerHeader></DrawerHeader>
           <DrawerBody>
             <Stack>
               <Link href="/">

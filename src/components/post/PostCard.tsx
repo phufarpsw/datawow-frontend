@@ -1,18 +1,19 @@
-import { Badge, Box, Card, HStack, IconButton, Text } from "@chakra-ui/react";
-import { IPost } from "@/api-caller/post";
+import { Badge, Box, Card, HStack, Text } from "@chakra-ui/react";
+import { IPost, IUpdatePost } from "@/api-caller/post";
 import { Avatar } from "../ui/avatar";
 import { IoChatbubbleOutline } from "react-icons/io5";
-import { CiEdit } from "react-icons/ci";
 import { ConfirmDeletePost } from "./ConfirmDeletePost";
 import Link from "next/link";
+import { UpdatePostDialog } from "./UpdatePostDialog";
 
 interface IPostCardProps {
   isFirst: boolean;
   post: IPost;
   onDelete: (postId: string) => void;
+  onUpdate: (post: IUpdatePost) => void;
 }
 
-export default function PostCard({ isFirst, post, onDelete }: IPostCardProps) {
+export default function PostCard({ isFirst, post, onDelete, onUpdate }: IPostCardProps) {
   const userId = localStorage.getItem("userId") || "";
   return (
     <Card.Root
@@ -49,9 +50,7 @@ export default function PostCard({ isFirst, post, onDelete }: IPostCardProps) {
 
         {post.authorId == userId && (
           <HStack position="absolute" top="5" right="10" spaceX={2}>
-            <IconButton aria-label="Edit Post" rounded="full">
-              <CiEdit size={24} />
-            </IconButton>
+            <UpdatePostDialog post={post} onUpdate={onUpdate} />
             <ConfirmDeletePost postId={post.id} onDelete={onDelete} />
           </HStack>
         )}
