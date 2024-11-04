@@ -11,18 +11,17 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import React from "react";
-import { Heading } from "@chakra-ui/react";
+import { Heading, IconButton } from "@chakra-ui/react";
+import { CiTrash } from "react-icons/ci";
 
 interface ConfirmDeletePostProps {
   postId: string;
-  children: React.ReactNode;
   onSuccess?: () => void;
   onDelete: (postId: string) => void;
 }
 
 export const ConfirmDeletePost = ({
   postId,
-  children,
   onSuccess,
   onDelete,
 }: ConfirmDeletePostProps) => {
@@ -46,7 +45,15 @@ export const ConfirmDeletePost = ({
 
   return (
     <DialogRoot open={isOpen} placement={"center"} role="alertdialog">
-      <DialogTrigger asChild>{children}</DialogTrigger>
+      <DialogTrigger asChild>
+        <IconButton
+          aria-label="Delete Post"
+          rounded="full"
+          onClick={() => setIsOpen(true)}
+        >
+          <CiTrash size={24} />
+        </IconButton>
+      </DialogTrigger>
       <DialogContent bg={"white"} color={"black"}>
         <DialogHeader fontSize={20}>
           <Heading fontWeight={"semibold"}>

@@ -1,5 +1,5 @@
 "use client";
-import { Flex, Box, Button, Text, Heading } from "@chakra-ui/react";
+import { Flex, Button, Text, Heading } from "@chakra-ui/react";
 import { useColorModeValue } from "./ui/color-mode";
 import MenuDrawer from "./MenuDrawer";
 import Link from "next/link";
