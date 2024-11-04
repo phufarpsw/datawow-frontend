@@ -25,6 +25,14 @@ export interface ICreatePost {
   authorId: string;
 }
 
+export interface IUpdatePost {
+  id: string;
+  title: string;
+  description: string;
+  community: string;
+  authorId: string;
+}
+
 export interface IPostSearch {
   title: string;
   community: string[];
@@ -70,6 +78,22 @@ export async function deletePost(postId: string) {
         userId,
       },
     });
+    return data;
+  } catch (error) {
+    return formattedError(error);
+  }
+}
+
+export async function updatePost(body: IUpdatePost) {
+  try {
+    const test = {
+      title: body.title,
+      description: body.description,
+      community: body.community,
+      authorId: body.authorId,
+      userId: body.authorId,
+    };
+    const { data } = await getInstance().patch(`/post/${body.id}`, test);
     return data;
   } catch (error) {
     return formattedError(error);

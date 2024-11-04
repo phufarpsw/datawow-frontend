@@ -6,7 +6,7 @@ import { SelectCommunity } from "@/components/SelectCommunity";
 import { InputGroup } from "@/components/ui/input-group";
 import { Box, Flex, Input, Stack } from "@chakra-ui/react";
 import { BiSearch } from "react-icons/bi";
-import { createPost, deletePost, ICreatePost, IPost } from "@/api-caller/post";
+import { createPost, deletePost, ICreatePost, IPost, IUpdatePost, updatePost } from "@/api-caller/post";
 import { getPosts } from "@/api-caller/post";
 import {
   CreatePostDialog,
@@ -65,6 +65,16 @@ export default function Dashboard() {
     }
   };
 
+  const onUpdatePost = async (post:IUpdatePost) => {
+    try {
+      await updatePost(post).then(()=>{
+        fetchPosts()
+      })
+    } catch (error) {
+      console.error("Failed to update post:", error);
+    }
+  }
+
   return (
     <>
       <Stack w={"5xl"} gap={4} p={4}>
@@ -92,6 +102,7 @@ export default function Dashboard() {
                     post={post}
                     isFirst={index == 0}
                     onDelete={onDeletePost}
+                    onUpdate={onUpdatePost}
                   />
                 );
               })
