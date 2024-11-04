@@ -44,6 +44,15 @@ export async function getPosts(query: IPostSearch) {
   }
 }
 
+export async function getPostById(postId: string) {
+  try {
+    const { data } = await getInstance().get(`/post/${postId}`);
+    return data;
+  } catch (error) {
+    return formattedError(error);
+  }
+}
+
 export async function createPost(body: ICreatePost) {
   try {
     const { data } = await getInstance().post("/post", body);

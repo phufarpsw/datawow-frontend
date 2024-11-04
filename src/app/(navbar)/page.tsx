@@ -13,7 +13,6 @@ import {
   ICreatePostForm,
 } from "@/components/post/CreatePostDialog";
 import { debounceSearch } from "@/utils/debounceSearch";
-import Link from "next/link";
 
 export default function Dashboard() {
   const userId = localStorage.getItem("userId");
@@ -66,7 +65,7 @@ export default function Dashboard() {
 
   return (
     <>
-      <Stack w={"5xl"}>
+      <Stack w={"5xl"} gap={4} p={4}>
         <Flex alignItems={"center"} gap={4} mb={4}>
           <InputGroup flex={1} startElement={<BiSearch />}>
             <Input
@@ -86,14 +85,12 @@ export default function Dashboard() {
           {posts.length > 0
             ? posts.map((post, index) => {
                 return (
-                  <Link key={index} href={`/post/${post.id}`}>
-                    <PostCard
-                      key={index}
-                      post={post}
-                      isFirst={index == 0}
-                      onDelete={onDeletePost}
-                    />
-                  </Link>
+                  <PostCard
+                    key={index}
+                    post={post}
+                    isFirst={index == 0}
+                    onDelete={onDeletePost}
+                  />
                 );
               })
             : "No Post"}
