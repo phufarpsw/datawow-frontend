@@ -29,6 +29,12 @@ export default function PostDetail() {
   const [comments, setComments] = useState<IComment[]>();
   const params = useParams();
   const userId = localStorage.getItem("userId");
+
+  const fetchComments = async () => {
+    const response = await getCommentByPostId(params.id as string);
+    setComments(response);
+  };
+
   useEffect(() => {
     if (!params.id) return;
     const fetchPost = async () => {
@@ -36,13 +42,8 @@ export default function PostDetail() {
       setPost(response);
     };
 
-    const fetchComments = async () => {
-      const response = await getCommentByPostId(params.id as string);
-      setComments(response);
-    };
-
-    fetchComments();
     fetchPost();
+    fetchComments();
   }, [params.id]);
 
   const onPost = async (content: string) => {
@@ -53,6 +54,7 @@ export default function PostDetail() {
         authorId: userId ?? "",
       };
       await createComment(body);
+      fetchComments();
     } else {
       alert("Please Login First");
     }
