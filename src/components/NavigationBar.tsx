@@ -14,17 +14,17 @@ export default function NavigationBar({ username }: NavigationBarProps) {
   const bgColor = useColorModeValue("gray.100", "gray.800");
   const router = useRouter();
 
-
   const logout = () => {
-    localStorage.removeItem("userId")
-    localStorage.removeItem("username")
-    router.push('/signin')
-
-  }
+    localStorage.removeItem("userId");
+    localStorage.removeItem("username");
+    router.push("/signin");
+  };
   return (
     <>
       <Flex p={2.5} px={8} bg={bgColor} justify="space-between" align="center">
-        <Heading fontWeight={"semibold"}>a Board</Heading>
+        <Link href="/">
+          <Heading fontWeight={"semibold"}>a Board</Heading>
+        </Link>
         {username ? (
           <div className="space-x-6 flex items-center">
             <Avatar variant={"solid"} name={username} />
