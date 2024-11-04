@@ -24,7 +24,9 @@ export default function Dashboard() {
 
   const handleTitleChange = useCallback(
     debounceSearch((value: string) => {
-      setPostSearch((prev) => ({ ...prev, title: value }));
+      if (value.length >= 2 || value.length == 0) {
+        setPostSearch((prev) => ({ ...prev, title: value }));
+      }
     }, 500),
     []
   );
