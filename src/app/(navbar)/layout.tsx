@@ -28,7 +28,7 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <Box minH="100vh" display="flex" flexDirection="column" bg="#BBC2C0">
       <NavigationBar username={user.username} />
-      <Flex flex={1} gap={4} p={4}>
+      <Flex flex={1}>
         {/* Sidebar Section */}
         {!isMobile && (
           <Box w="sm" h="full" p={4}>
